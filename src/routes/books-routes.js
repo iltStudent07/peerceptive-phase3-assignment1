@@ -64,6 +64,11 @@ router.get("/", (req, res) => {
 })
 
 
+// Route that simulates an error
+router.get("/danger", (req, res) => {
+    throw new Error("Something went wrong!");
+});
+
 // GET /:id - Returns a single book that matches id
 router.get("/:id", (req, res) => {
     const id = parseInt(req.params.id)
