@@ -105,4 +105,40 @@ router.post("/", (req, res) => {
     res.status(201).json(newBook)
 })
 
+// PUT /:id - Update an existing book
+router.put("/:id", (req, res) => {
+    const id = parseInt(req.params.id)
+    const book = books.find((b) => b.id === id)
+
+    if (!book) {
+        return res.status(404).json({ error: "Book not found"})
+    }
+
+    const { title, author, published, genre } = req.body
+
+    if (published !== undefined && (typeof published !== "number" || published < 0 || published > 2026)) {
+        return res.status(400).json({ error: "Published field must be a real year"})
+    }
+
+    if (title !== undefined) book.title = title
+    if (author !== undefined) book.author = author
+    if (published !== undefined) book.published = published
+    if (genre !== undefined) book.genre = genre
+
+    res.json(book)
+})
+
+// DELETE /:id - Delete a book
+router.delete("/:id", (req, res) => {
+    const id = parseInt(req.params.id)
+    const index = books.findIndex((b) => b.id === id)
+
+    if (index === -1) {
+        return res.status(404).json({ error: "Book not found" })
+    }
+
+    books.splice(index, 1)
+    res.status(204).send()
+})
+
 export default router
