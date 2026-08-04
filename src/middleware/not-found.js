@@ -1,0 +1,8 @@
+// Middleware that throws error for any route not handled in books-route
+function notFound(req, res, next) {
+    const error = new Error(`Route not found: ${req.method} ${req.originalUrl}`)
+    error.status = 404
+    next(error)
+}
+
+export default notFound

@@ -64,6 +64,22 @@ router.get("/", (req, res) => {
 })
 
 
+// Route that simulates an error
+router.get("/danger", (req, res) => {
+    throw new Error("Something went wrong!");
+});
+
+// Route that simulates an async error
+router.get("/async-danger", async (req, res, next) => {
+    try {
+        // Simulate a failed database call
+        throw new Error("Database connection failed");
+    } catch (err) {
+        next(err); // Pass to error handling middleware
+    }
+});
+
+
 // GET /:id - Returns a single book that matches id
 router.get("/:id", (req, res) => {
     const id = parseInt(req.params.id)

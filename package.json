@@ -5,6 +5,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "dev": "NODE_ENV=development node src/api/express-server.js",
+    "start": "NODE_ENV=production node src/api/express-server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
