@@ -142,15 +142,15 @@ This project used GitHub Copilot as a learning/development assistant to validate
 ### Design Decisions -
 This project is structured as a REST Express API. Express Router was used to help organize different routes, which allowed the code to be kept clean and modular. URL structure is noun-based and resource-oriented such as: "/api/books". The resource chosen for this project was an array of books and the entire project is setup around creating, updating, reading and deleting the books in the array. I selected status codes to match endpoint outcomes:
 
-200 OK - for successful reads and updates
-201 - Created for successful creation
-204 - No Content for successful deletion
-400 - Bad Request for validation/input errors
-404 - Not Found for missing routes or missing book IDs
-500 - Internal Server Error for unexpected server failures handled by error middleware
+* 200 OK - for successful reads and updates
+* 201 - Created for successful creation
+* 204 - No Content for successful deletion
+* 400 - Bad Request for validation/input errors
+* 404 - Not Found for missing routes or missing book IDs
+* 500 - Internal Server Error for unexpected server failures handled by error middleware
 
 ### Express Routes and Middleware -
 Routes are organized by resource using Express Router, which keeps endpoint logic modular and easier to maintain as the project grows. I used middleware for (request logging, 404 handling, and centralized error handling) so route files stay focused on business logic.
 
 ### How Errors Were Handled -
-For errors during development, I used Copilot for troubleshooting and then manually reviewed the output to make sure that that fixed the problem. For error handling in the project itself I used a centralized error handler middlerware to catch and generic errors and edge cases that might pop up and then if statements were set up in each route to handle specific errors that would pop up around that specific route.
+For errors during development, I used Copilot for troubleshooting and then manually reviewed the output to make sure that fixed the problem. For error handling in the project itself I used a centralized error handler middleware to catch and generic errors and edge cases that might pop up and then if statements were set up in each route to handle specific errors that would pop up around that specific route.
